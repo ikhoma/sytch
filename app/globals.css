@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-espresso: #F05A28;
+  --color-filter: #4C00FF;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    transition: background-color 0.4s ease-in-out;
+  }
+}
