@@ -88,7 +88,7 @@ export default function Home() {
             animate={{ scale: 25, rotate: 15 }}
             transition={{ duration: 0.7, ease: 'circIn' }}
             onAnimationComplete={() => setBaseTab(activeTab)}
-            className={`pointer-events-none`}
+            className={`pointer-events-none will-change-transform`}
           >
             <SplashSvg color={getHexColor(activeTab)} />
           </motion.div>
