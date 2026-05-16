@@ -59,9 +59,9 @@ export default function Home() {
 
   const filteredData = data?.filter(item => item.category === activeTab) || [];
   
-  const getBgColorClass = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? 'bg-[#F05A28]' : 'bg-[#4C00FF]';
-  const getOppositeBgClass = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? 'bg-[#4C00FF]' : 'bg-[#F05A28]';
-  const getHexColor = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? '#F05A28' : '#4C00FF';
+  const getBgColorClass = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? 'bg-[#FC643F]' : 'bg-[#580EFA]';
+  const getOppositeBgClass = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? 'bg-[#580EFA]' : 'bg-[#FC643F]';
+  const getHexColor = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? '#FC643F' : '#580EFA';
 
   const size = typeof window !== 'undefined' ? Math.max(window.innerWidth, window.innerHeight) * 2 : 2000;
 
@@ -100,7 +100,7 @@ export default function Home() {
       {/* Parallax Decorations */}
       <motion.div 
         style={{ y: ySlow }} 
-        className="absolute top-[20%] -left-10 md:-left-20 z-[-1] opacity-60 pointer-events-none"
+        className="absolute top-[20%] -left-10 md:-left-20 z-[-1] pointer-events-none"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -110,7 +110,7 @@ export default function Home() {
 
       <motion.div 
         style={{ y: yFast }} 
-        className="absolute top-[30%] -right-8 md:-right-24 z-[-1] opacity-60 pointer-events-none"
+        className="absolute top-[30%] -right-8 md:-right-24 z-[-1] pointer-events-none"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -120,7 +120,7 @@ export default function Home() {
 
       <motion.div 
         style={{ y: yMedium }} 
-        className="absolute top-[80%] -left-16 md:-left-32 z-[-1] opacity-60 pointer-events-none"
+        className="absolute top-[80%] -left-16 md:-left-32 z-[-1] pointer-events-none"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -139,17 +139,17 @@ export default function Home() {
       )}
 
       {/* Header Area (Tabs & Contact) */}
-      <div className="flex justify-between items-start w-full mb-8 px-2">
+      <div className="flex flex-col md:flex-row justify-between items-center w-full mb-12 px-2 mt-2 gap-6 md:gap-0">
         {/* Top Tabs */}
-        <div className="flex space-x-8 text-sm font-semibold tracking-wide">
+        <div className="flex bg-black/20 rounded-full p-1.5 text-lg md:text-xl font-black tracking-wide">
           <button 
-            className={`pb-1 ${activeTab === 'Espresso' ? 'text-white' : 'text-white/50 hover:text-white/80 transition-colors'}`}
+            className={`px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Espresso' ? `${getBgColorClass('Espresso')} text-white` : 'text-white/80 hover:text-white'}`}
             onClick={(e) => handleTabClick('Espresso', e)}
           >
             Espresso
           </button>
           <button 
-            className={`pb-1 ${activeTab === 'Filter' ? 'text-white' : 'text-white/50 hover:text-white/80 transition-colors'}`}
+            className={`px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Filter' ? `${getBgColorClass('Filter')} text-white` : 'text-white/80 hover:text-white'}`}
             onClick={(e) => handleTabClick('Filter', e)}
           >
             Filter
@@ -157,11 +157,11 @@ export default function Home() {
         </div>
 
         {/* Contact Info */}
-        <div className="flex items-center space-x-6 md:space-x-8 text-sm font-semibold tracking-wide">
-          <a href="tel:+380675067392" className="text-white hover:text-white/80 transition-colors">
+        <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 md:space-x-8 tracking-wide">
+          <a href="tel:+380675067392" className="text-white hover:text-white/80 transition-colors font-black text-xl md:text-[22px]">
             +38 (067) 506 73 92
           </a>
-          <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/80 transition-colors">
+          <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 md:py-3.5 rounded-full text-lg md:text-xl font-black text-white hover:opacity-90 transition-opacity ${getOppositeBgClass(baseTab)}`}>
             Замовити
           </a>
         </div>
@@ -207,7 +207,7 @@ export default function Home() {
                 </tr>
               )}
               {!isLoading && !error && filteredData.map((item, index) => (
-                <tr key={item.id} className="even:bg-black/10 hover:bg-white/10 transition-colors group">
+                <tr key={item.id} className="even:bg-black/10">
                   <td className="py-6 align-top text-xl font-black pl-4 lg:pl-6">{item.number}</td>
                   <td className="py-6 align-top pr-6">
                     <div className="text-[28px] font-black tracking-tight uppercase leading-[1.1] mb-2">{item.name}</div>

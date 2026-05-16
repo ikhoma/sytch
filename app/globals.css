@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-espresso: #F05A28;
-  --color-filter: #4C00FF;
+  --color-espresso: #FC643F;
+  --color-filter: #580EFA;
   --font-sans: 'Inter', sans-serif;
 }
 
