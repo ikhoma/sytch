@@ -150,7 +150,7 @@ export default function Home() {
               <motion.div
                 layoutId="activeTabUnderlay"
                 className={`absolute inset-0 rounded-full ${getBgColorClass('Espresso')}`}
-                transition={{ duration: 0.7, ease: "easeInOut" }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
               />
             )}
             <span className="relative z-10">Espresso</span>
@@ -163,7 +163,7 @@ export default function Home() {
               <motion.div
                 layoutId="activeTabUnderlay"
                 className={`absolute inset-0 rounded-full ${getBgColorClass('Filter')}`}
-                transition={{ duration: 0.7, ease: "easeInOut" }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
               />
             )}
             <span className="relative z-10">Filter</span>
