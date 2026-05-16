@@ -187,11 +187,16 @@ export default function Home() {
         {/* Title and Logo */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
           <h1 className="flex items-start min-h-[80px] md:min-h-[140px] pt-2 md:pt-4">
-            {activeTab === 'Espresso' ? (
-              <img src="/espresso.svg" alt="Espresso" className="h-[71px] md:h-[119px] w-auto object-contain mt-[3px] md:mt-[5px]" />
-            ) : (
-              <img src="/filter.svg" alt="Filter" className="h-[58px] md:h-[97px] w-auto object-contain" />
-            )}
+            <img 
+              src="/espresso.svg" 
+              alt="Espresso" 
+              className={`h-[71px] md:h-[119px] w-auto object-contain mt-[3px] md:mt-[5px] ${activeTab === 'Espresso' ? 'block' : 'hidden'}`} 
+            />
+            <img 
+              src="/filter.svg" 
+              alt="Filter" 
+              className={`h-[58px] md:h-[97px] w-auto object-contain ${activeTab === 'Filter' ? 'block' : 'hidden'}`} 
+            />
           </h1>
           <div className="flex flex-col items-end mt-4 md:mt-0">
             <img src="/logo.svg" alt="Sytch Coffee Roasters" className="h-16 md:h-20 lg:h-[89px] w-auto" />
