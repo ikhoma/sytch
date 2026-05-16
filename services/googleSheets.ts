@@ -1,7 +1,7 @@
 import { CoffeeItem } from '@/lib/data';
 import Papa from 'papaparse';
 
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1KfRfP4UKNiL3wmaFFR1xCadAyldehNZ_Dhhipyx1TiA/export?format=csv&gid=0';
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1KfRfP4UKNiL3wmaFFR1xCadAyldehNZ_Dhhipyx1TiA/export?format=csv';
 
 export async function fetchCoffeeData(): Promise<CoffeeItem[]> {
   try {
