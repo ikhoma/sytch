@@ -59,9 +59,9 @@ export default function Home() {
 
   const filteredData = data?.filter(item => item.category === activeTab) || [];
   
-  const getBgColorClass = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? 'bg-[#FC643F]' : 'bg-[#580EFA]';
-  const getOppositeBgClass = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? 'bg-[#580EFA]' : 'bg-[#FC643F]';
-  const getHexColor = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? '#FC643F' : '#580EFA';
+  const getBgColorClass = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? 'bg-[#FF5C39]' : 'bg-[#5804E2]';
+  const getOppositeBgClass = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? 'bg-[#5804E2]' : 'bg-[#FF5C39]';
+  const getHexColor = (tab: 'Espresso' | 'Filter') => tab === 'Espresso' ? '#FF5C39' : '#5804E2';
 
   const size = typeof window !== 'undefined' ? Math.max(window.innerWidth, window.innerHeight) * 2 : 2000;
 
@@ -205,15 +205,15 @@ export default function Home() {
 
         {/* Table Container */}
         <div className="w-full overflow-x-auto flex-1">
-          <table className="w-full text-left border-collapse min-w-[900px]">
+          <table className="w-full text-left border-separate border-spacing-0 min-w-[900px]">
             <thead>
-              <tr className="border-b border-white/50 text-[13px] font-black uppercase">
-                <th className="pb-4 pt-2 w-20 lg:w-24 pl-4 lg:pl-6 font-black">№</th>
-                <th className="pb-4 pt-2 w-[28%] font-black">КАВА</th>
-                <th className="pb-4 pt-2 w-[22%] font-black">ПРОФІЛЬ СМАКУ</th>
-                <th className="pb-4 pt-2 w-[15%] font-black">ОБРОБКА</th>
-                <th className="pb-4 pt-2 w-[15%] font-black">ЦІНА РОЗДРІБ</th>
-                <th className="pb-4 pt-2 w-[15%] pr-4 lg:pr-6 font-black">ОПТ ВІД 2КГ</th>
+              <tr className="text-[13px] font-black uppercase">
+                <th className="pb-4 pt-2 w-20 lg:w-24 pl-4 lg:pl-6 font-black border-b border-white/50">№</th>
+                <th className="pb-4 pt-2 w-[28%] font-black border-b border-white/50">КАВА</th>
+                <th className="pb-4 pt-2 w-[22%] font-black border-b border-white/50">ПРОФІЛЬ СМАКУ</th>
+                <th className="pb-4 pt-2 w-[15%] font-black border-b border-white/50">ОБРОБКА</th>
+                <th className="pb-4 pt-2 w-[15%] font-black border-b border-white/50">ЦІНА РОЗДРІБ</th>
+                <th className="pb-4 pt-2 w-[15%] pr-4 lg:pr-6 font-black border-b border-white/50">ОПТ ВІД 2КГ</th>
               </tr>
             </thead>
             <tbody className="text-sm md:text-base font-semibold">
@@ -226,15 +226,15 @@ export default function Home() {
                 </tr>
               )}
               {!isLoading && !error && filteredData.map((item, index) => (
-                <tr key={item.id} className="even:bg-black/10">
-                  <td className="py-6 align-top text-xl font-black pl-4 lg:pl-6">{item.number}</td>
-                  <td className="py-6 align-top pr-6">
+                <tr key={item.id} className="group">
+                  <td className="py-6 align-top text-xl font-black pl-4 lg:pl-6 group-even:bg-black/10 group-even:rounded-l-[30px]">{item.number}</td>
+                  <td className="py-6 align-top pr-6 group-even:bg-black/10">
                     <div className="text-[28px] font-black tracking-tight uppercase leading-[1.1] mb-2">{item.name}</div>
                     <div className="text-base font-bold">{item.region}</div>
                   </td>
-                  <td className="py-6 align-top pr-6 font-bold text-[15px] leading-snug">{item.flavorProfile}</td>
-                  <td className="py-6 align-top pr-6 font-bold text-[15px]">{item.processing}</td>
-                  <td className="py-6 align-top pr-2">
+                  <td className="py-6 align-top pr-6 font-bold text-[15px] leading-snug group-even:bg-black/10">{item.flavorProfile}</td>
+                  <td className="py-6 align-top pr-6 font-bold text-[15px] group-even:bg-black/10">{item.processing}</td>
+                  <td className="py-6 align-top pr-2 group-even:bg-black/10">
                     <div className="flex items-center gap-4 mb-2">
                       <span className="w-11 text-[13px] uppercase font-black">250г</span>
                       <span className="text-xl font-black">{item.retailPrice.weight250g}</span>
@@ -244,7 +244,7 @@ export default function Home() {
                       <span className="text-xl font-black">{item.retailPrice.weight1kg}</span>
                     </div>
                   </td>
-                  <td className="py-6 align-top pr-4 lg:pr-6">
+                  <td className="py-6 align-top pr-4 lg:pr-6 group-even:bg-black/10 group-even:rounded-r-[30px]">
                     <div className="flex items-center gap-4 mb-2">
                       <span className="w-11 text-[13px] uppercase font-black">250г</span>
                       <span className="text-xl font-black">{item.wholesalePrice.weight250g}</span>
@@ -270,19 +270,19 @@ function TableSkeletonRows({ count }: { count: number }) {
   return (
     <>
       {Array.from({ length: count }).map((_, i) => (
-        <tr key={i} className="animate-pulse even:bg-black/10">
-          <td className="py-6 pr-4 pl-4 lg:pl-6"><div className="h-6 bg-white/20 rounded w-8"></div></td>
-          <td className="py-6 pr-6">
+        <tr key={i} className="animate-pulse group">
+          <td className="py-6 pr-4 pl-4 lg:pl-6 group-even:bg-black/10 group-even:rounded-l-[30px]"><div className="h-6 bg-white/20 rounded w-8"></div></td>
+          <td className="py-6 pr-6 group-even:bg-black/10">
             <div className="h-8 bg-white/20 rounded w-3/4 mb-3"></div>
             <div className="h-4 bg-white/20 rounded w-1/2"></div>
           </td>
-          <td className="py-6 pr-6"><div className="h-4 bg-white/20 rounded w-full mb-2"></div><div className="h-4 bg-white/20 rounded w-4/5"></div></td>
-          <td className="py-6 pr-6"><div className="h-4 bg-white/20 rounded w-2/3"></div></td>
-          <td className="py-6 pr-4">
+          <td className="py-6 pr-6 group-even:bg-black/10"><div className="h-4 bg-white/20 rounded w-full mb-2"></div><div className="h-4 bg-white/20 rounded w-4/5"></div></td>
+          <td className="py-6 pr-6 group-even:bg-black/10"><div className="h-4 bg-white/20 rounded w-2/3"></div></td>
+          <td className="py-6 pr-4 group-even:bg-black/10">
             <div className="h-6 bg-white/20 rounded w-full mb-2"></div>
             <div className="h-6 bg-white/20 rounded w-full"></div>
           </td>
-          <td className="py-6 pr-4 lg:pr-6">
+          <td className="py-6 pr-4 lg:pr-6 group-even:bg-black/10 group-even:rounded-r-[30px]">
             <div className="h-6 bg-white/20 rounded w-full mb-2"></div>
             <div className="h-6 bg-white/20 rounded w-full"></div>
           </td>
