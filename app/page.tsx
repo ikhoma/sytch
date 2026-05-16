@@ -143,16 +143,30 @@ export default function Home() {
         {/* Top Tabs */}
         <div className="flex bg-black/20 rounded-full p-1.5 text-lg md:text-xl font-black tracking-wide">
           <button 
-            className={`px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Espresso' ? `${getBgColorClass('Espresso')} text-white` : 'text-white/80 hover:text-white'}`}
+            className={`relative px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Espresso' ? 'text-white' : 'text-white/80 hover:text-white'}`}
             onClick={(e) => handleTabClick('Espresso', e)}
           >
-            Espresso
+            {activeTab === 'Espresso' && (
+              <motion.div
+                layoutId="activeTabUnderlay"
+                className={`absolute inset-0 rounded-full ${getBgColorClass('Espresso')}`}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+              />
+            )}
+            <span className="relative z-10">Espresso</span>
           </button>
           <button 
-            className={`px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Filter' ? `${getBgColorClass('Filter')} text-white` : 'text-white/80 hover:text-white'}`}
+            className={`relative px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Filter' ? 'text-white' : 'text-white/80 hover:text-white'}`}
             onClick={(e) => handleTabClick('Filter', e)}
           >
-            Filter
+            {activeTab === 'Filter' && (
+              <motion.div
+                layoutId="activeTabUnderlay"
+                className={`absolute inset-0 rounded-full ${getBgColorClass('Filter')}`}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+              />
+            )}
+            <span className="relative z-10">Filter</span>
           </button>
         </div>
 
