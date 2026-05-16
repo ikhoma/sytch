@@ -100,7 +100,7 @@ export default function Home() {
       {/* Parallax Decorations */}
       <motion.div 
         style={{ y: ySlow }} 
-        className="absolute top-[20%] -left-10 md:-left-20 z-[-1] pointer-events-none"
+        className="absolute top-[20%] -left-10 md:-left-20 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -110,7 +110,7 @@ export default function Home() {
 
       <motion.div 
         style={{ y: yFast }} 
-        className="absolute top-[30%] -right-8 md:-right-24 z-[-1] pointer-events-none"
+        className="absolute top-[30%] -right-8 md:-right-24 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -120,7 +120,7 @@ export default function Home() {
 
       <motion.div 
         style={{ y: yMedium }} 
-        className="absolute top-[80%] -left-16 md:-left-32 z-[-1] pointer-events-none"
+        className="absolute top-[80%] -left-16 md:-left-32 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -132,7 +132,7 @@ export default function Home() {
       {!isLoading && (
         <motion.div 
           style={{ y: ySlow, opacity: opacitySytch }} 
-          className="absolute bottom-10 md:bottom-20 -right-20 md:-right-40 z-[-1] pointer-events-none"
+          className="absolute bottom-10 md:bottom-20 -right-20 md:-right-40 z-[-1] pointer-events-none will-change-transform"
         >
           <img src="/sytch.svg" alt="Sytch" className="w-[200px] md:w-[322px]" />
         </motion.div>
