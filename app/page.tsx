@@ -66,7 +66,7 @@ export default function Home() {
   const size = typeof window !== 'undefined' ? Math.max(window.innerWidth, window.innerHeight) * 2 : 2000;
 
   return (
-    <div className={`min-h-screen text-white p-6 md:p-12 lg:p-16 font-sans flex flex-col items-center overflow-x-hidden ${getBgColorClass(baseTab)}`}>
+    <div className={`min-h-screen text-white p-6 md:p-12 lg:p-16 font-sans flex flex-col items-center overflow-clip ${getBgColorClass(baseTab)}`}>
 
       {/* Liquid Background Overlay */}
       <AnimatePresence>
