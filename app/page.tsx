@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { CoffeeItem } from '@/lib/data';
@@ -37,6 +37,13 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'Espresso' | 'Filter'>('Espresso');
   const [baseTab, setBaseTab] = useState<'Espresso' | 'Filter'>('Espresso');
   const [ripple, setRipple] = useState<{ x: number, y: number, id: number } | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleTabClick = (tab: 'Espresso' | 'Filter', e: React.MouseEvent) => {
     if (tab === activeTab) return;
@@ -66,7 +73,7 @@ export default function Home() {
   const size = typeof window !== 'undefined' ? Math.max(window.innerWidth, window.innerHeight) * 2 : 2000;
 
   return (
-    <div className={`min-h-screen text-white p-6 md:p-12 lg:p-16 font-sans flex flex-col items-center overflow-clip ${getBgColorClass(baseTab)}`}>
+    <div className={`min-h-screen text-white font-sans flex flex-col items-center overflow-clip ${getBgColorClass(baseTab)}`}>
 
       {/* Liquid Background Overlay */}
       <AnimatePresence>
@@ -95,12 +102,75 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <div className="w-full max-w-[1280px] flex flex-col flex-1 relative z-20">
+      {/* Floating Fixed Header — appears on scroll */}
+      <motion.header
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center py-4 md:py-6 pointer-events-none"
+        initial={{ y: '-100%' }}
+        animate={{ y: scrolled ? '0%' : '-100%' }}
+        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+        style={{
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0) 100%)'
+        }}
+      >
+        <div className="w-full max-w-[1280px] px-6 md:px-12 lg:px-16 flex justify-end items-center space-x-6 md:space-x-8 tracking-wide pointer-events-auto">
+          <a href="tel:+380675067392" className="text-white hover:text-white/80 transition-colors font-black text-lg md:text-[22px] whitespace-nowrap">
+            +38 (067) 506 73 92
+          </a>
+          <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-6 md:px-8 py-2.5 md:py-3.5 rounded-full text-base md:text-xl font-black text-white hover:opacity-90 transition-opacity whitespace-nowrap ${getOppositeBgClass(baseTab)}`}>
+            Замовити
+          </a>
+        </div>
+      </motion.header>
+
+      {/* In-flow top header (always visible at top of page) */}
+      <div className="w-full flex justify-center py-4 md:py-6 relative z-20">
+        <div className="w-full max-w-[1280px] px-6 md:px-12 lg:px-16 flex flex-wrap md:flex-nowrap justify-between items-center gap-4 md:gap-0">
+
+          {/* Left Side (Logo + Tabs) */}
+          <div className="w-full md:w-auto flex flex-col md:flex-row items-center justify-center md:justify-start order-1 md:order-1 md:gap-8">
+            <img src="/logo.svg" alt="Sytch Coffee Roasters" className="h-[36px] md:h-[60px] w-auto" />
+            <div className="flex bg-black/20 rounded-full p-1.5 text-lg md:text-xl font-black tracking-wide mt-4 md:mt-0">
+              <button
+                className={`relative px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Espresso' ? 'text-white' : 'text-white/80 hover:text-white'}`}
+                onClick={(e) => handleTabClick('Espresso', e)}
+              >
+                {activeTab === 'Espresso' && (
+                  <motion.div layoutId="activeTabUnderlay" className={`absolute inset-0 rounded-full ${getBgColorClass('Espresso')}`} transition={{ duration: 0.175, ease: 'easeInOut' }} />
+                )}
+                <span className="relative z-10">Espresso</span>
+              </button>
+              <button
+                className={`relative px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Filter' ? 'text-white' : 'text-white/80 hover:text-white'}`}
+                onClick={(e) => handleTabClick('Filter', e)}
+              >
+                {activeTab === 'Filter' && (
+                  <motion.div layoutId="activeTabUnderlay" className={`absolute inset-0 rounded-full ${getBgColorClass('Filter')}`} transition={{ duration: 0.175, ease: 'easeInOut' }} />
+                )}
+                <span className="relative z-10">Filter</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Contact Info (Right) */}
+          <div className="w-full md:w-auto flex justify-center md:justify-end items-center space-x-6 md:space-x-8 tracking-wide order-2 md:order-2 mt-4 md:mt-0">
+            <a href="tel:+380675067392" className="text-white hover:text-white/80 transition-colors font-black text-lg md:text-[22px] whitespace-nowrap">
+              +38 (067) 506 73 92
+            </a>
+            <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-6 md:px-8 py-2.5 md:py-3.5 rounded-full text-base md:text-xl font-black text-white hover:opacity-90 transition-opacity whitespace-nowrap ${getOppositeBgClass(baseTab)}`}>
+              Замовити
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Main Content Wrapper */}
+      <div className="w-full max-w-[1280px] px-6 md:px-12 lg:px-16 flex flex-col flex-1 relative z-20">
       
       {/* Parallax Decorations */}
       <motion.div 
         style={{ y: ySlow }} 
-        className="absolute top-[20%] -left-10 md:-left-20 z-[-1] pointer-events-none will-change-transform"
+        className="absolute top-[320px] -left-10 md:-left-20 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -110,21 +180,21 @@ export default function Home() {
 
       <motion.div 
         style={{ y: yFast }} 
-        className="absolute top-[30%] -right-8 md:-right-24 z-[-1] pointer-events-none will-change-transform"
+        className="absolute top-[560px] -right-8 md:-right-24 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
-          style={{ maskImage: 'url(/grain.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskImage: 'url(/grain.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', transform: 'rotate(120deg) scale(0.8)' }}
+          style={{ maskImage: 'url(/grain.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskImage: 'url(/grain.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', transform: 'rotate(120deg) scale(0.95)' }}
         />
       </motion.div>
 
       <motion.div 
         style={{ y: yMedium }} 
-        className="absolute top-[80%] -left-16 md:-left-32 z-[-1] pointer-events-none will-change-transform"
+        className="absolute top-[1000px] -left-16 md:-left-32 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
-          style={{ maskImage: 'url(/grain.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskImage: 'url(/grain.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', transform: 'rotate(-45deg) scale(1.2)' }}
+          style={{ maskImage: 'url(/grain.svg)', maskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskImage: 'url(/grain.svg)', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat', transform: 'rotate(-45deg) scale(1.05)' }}
         />
       </motion.div>
 
@@ -132,61 +202,18 @@ export default function Home() {
       {!isLoading && (
         <motion.div 
           style={{ y: ySlow, opacity: opacitySytch }} 
-          className="absolute bottom-10 md:bottom-20 -right-20 md:-right-40 z-[-1] pointer-events-none will-change-transform"
+          className="absolute top-[1240px] -right-20 md:-right-40 z-[-1] pointer-events-none will-change-transform"
         >
           <img src="/sytch.svg" alt="Sytch" className="w-[200px] md:w-[322px]" />
         </motion.div>
       )}
 
-      {/* Header Area (Tabs & Contact) */}
-      <div className="flex flex-col md:flex-row justify-between items-center w-full mb-12 px-2 mt-2 gap-6 md:gap-0">
-        {/* Top Tabs */}
-        <div className="flex bg-black/20 rounded-full p-1.5 text-lg md:text-xl font-black tracking-wide">
-          <button 
-            className={`relative px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Espresso' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-            onClick={(e) => handleTabClick('Espresso', e)}
-          >
-            {activeTab === 'Espresso' && (
-              <motion.div
-                layoutId="activeTabUnderlay"
-                className={`absolute inset-0 rounded-full ${getBgColorClass('Espresso')}`}
-                transition={{ duration: 0.175, ease: "easeInOut" }}
-              />
-            )}
-            <span className="relative z-10">Espresso</span>
-          </button>
-          <button 
-            className={`relative px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Filter' ? 'text-white' : 'text-white/80 hover:text-white'}`}
-            onClick={(e) => handleTabClick('Filter', e)}
-          >
-            {activeTab === 'Filter' && (
-              <motion.div
-                layoutId="activeTabUnderlay"
-                className={`absolute inset-0 rounded-full ${getBgColorClass('Filter')}`}
-                transition={{ duration: 0.175, ease: "easeInOut" }}
-              />
-            )}
-            <span className="relative z-10">Filter</span>
-          </button>
-        </div>
-
-        {/* Contact Info */}
-        <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 md:space-x-8 tracking-wide">
-          <a href="tel:+380675067392" className="text-white hover:text-white/80 transition-colors font-black text-xl md:text-[22px]">
-            +38 (067) 506 73 92
-          </a>
-          <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-8 py-3 md:py-3.5 rounded-full text-lg md:text-xl font-black text-white hover:opacity-90 transition-opacity ${getOppositeBgClass(baseTab)}`}>
-            Замовити
-          </a>
-        </div>
-      </div>
-
       {/* Main Content Area */}
-      <main className="flex-1 w-full flex flex-col">
+      <main className="flex-1 w-full flex flex-col pt-6">
         
-        {/* Title and Logo */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8">
-          <h1 className="flex items-start min-h-[80px] md:min-h-[140px] pt-2 md:pt-4">
+        {/* Title */}
+        <div className="flex flex-col items-start mb-12">
+          <h1 className="flex items-start min-h-[80px] md:min-h-[140px]">
             <img 
               src="/espresso.svg" 
               alt="Espresso" 
@@ -198,9 +225,6 @@ export default function Home() {
               className={`h-[58px] md:h-[97px] w-auto object-contain ${activeTab === 'Filter' ? 'block' : 'hidden'}`} 
             />
           </h1>
-          <div className="flex flex-col items-end mt-4 md:mt-0">
-            <img src="/logo.svg" alt="Sytch Coffee Roasters" className="h-16 md:h-20 lg:h-[89px] w-auto" />
-          </div>
         </div>
 
         {/* Table Container */}
