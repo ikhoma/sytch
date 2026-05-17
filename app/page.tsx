@@ -137,22 +137,22 @@ export default function Home() {
       {/* Mobile Header */}
       <div className="md:hidden w-full flex flex-col relative z-20">
         {/* Row 1: Logo + Phone + CTA */}
-        <div className="flex items-center justify-between px-4 pt-4 pb-5 gap-2">
+        <div className="flex items-center justify-between px-4 pt-3 pb-5 gap-2">
           <img src="/logo.svg" alt="Sytch Coffee Roasters" className="h-[36px] w-auto shrink-0" />
           <div className="flex items-center gap-2 shrink-0">
-            <a href="tel:+380675067392" className="text-white font-black text-base whitespace-nowrap">
+            <a href="tel:+380675067392" className="text-white font-black text-[13px] whitespace-nowrap">
               +38 (067) 506 73 92
             </a>
-            <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-5 py-2 rounded-full text-base font-black text-white whitespace-nowrap ${getOppositeBgClass(baseTab)}`}>
+            <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-4 py-2 rounded-full text-[13px] font-black text-white whitespace-nowrap ${getOppositeBgClass(baseTab)}`}>
               Замовити
             </a>
           </div>
         </div>
-        {/* Row 2: Tabs — 20px gap below to title */}
+        {/* Row 2: Tabs */}
         <div className="px-4 pb-5">
-          <div className="inline-flex bg-black/20 rounded-full p-1.5 text-xl font-black tracking-wide">
+          <div className="inline-flex bg-black/20 rounded-full p-1 text-sm font-black tracking-wide">
             <button
-              className={`relative px-6 py-2.5 rounded-full transition-colors ${activeTab === 'Espresso' ? 'text-white' : 'text-white/80'}`}
+              className={`relative px-5 py-2 rounded-full transition-colors ${activeTab === 'Espresso' ? 'text-white' : 'text-white/80'}`}
               onClick={(e) => handleTabClick('Espresso', e)}
             >
               {activeTab === 'Espresso' && (
@@ -161,7 +161,7 @@ export default function Home() {
               <span className="relative z-10">Espresso</span>
             </button>
             <button
-              className={`relative px-6 py-2.5 rounded-full transition-colors ${activeTab === 'Filter' ? 'text-white' : 'text-white/80'}`}
+              className={`relative px-5 py-2 rounded-full transition-colors ${activeTab === 'Filter' ? 'text-white' : 'text-white/80'}`}
               onClick={(e) => handleTabClick('Filter', e)}
             >
               {activeTab === 'Filter' && (
@@ -233,10 +233,10 @@ export default function Home() {
       <main className="flex-1 w-full flex flex-col pt-0 md:pt-6">
 
         {/* Title */}
-        <div className="flex flex-col items-start mb-5 md:mb-12 px-4 md:px-0">
-          <h1 className="flex items-start min-h-[80px] md:min-h-[140px]">
-            <img src="/espresso.svg" alt="Espresso" className={`h-[80px] md:h-[119px] w-auto object-contain mt-[2px] md:mt-[5px] ${activeTab === 'Espresso' ? 'block' : 'hidden'}`} />
-            <img src="/filter.svg" alt="Filter" className={`h-[65px] md:h-[97px] w-auto object-contain ${activeTab === 'Filter' ? 'block' : 'hidden'}`} />
+        <div className="flex flex-col items-start mb-6 md:mb-12 px-4 md:px-0">
+          <h1 className="flex items-start min-h-[52px] md:min-h-[140px]">
+            <img src="/espresso.svg" alt="Espresso" className={`h-[52px] md:h-[119px] w-auto object-contain mt-[2px] md:mt-[5px] ${activeTab === 'Espresso' ? 'block' : 'hidden'}`} />
+            <img src="/filter.svg" alt="Filter" className={`h-[42px] md:h-[97px] w-auto object-contain ${activeTab === 'Filter' ? 'block' : 'hidden'}`} />
           </h1>
         </div>
 
