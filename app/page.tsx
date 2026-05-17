@@ -123,15 +123,15 @@ export default function Home() {
       </motion.header>
 
       {/* In-flow top header (always visible at top of page) */}
-      <div className="w-full flex justify-center py-4 md:py-6 relative z-20">
-        <div className="w-full max-w-[1280px] px-6 md:px-12 lg:px-16 flex flex-wrap md:flex-nowrap justify-between items-center gap-4 md:gap-0">
+      <div className="w-full flex justify-center py-3 md:py-6 relative z-20">
+        <div className="w-full max-w-[1280px] px-4 md:px-12 lg:px-16 flex flex-nowrap justify-between items-center gap-2 md:gap-0">
 
           {/* Left Side (Logo + Tabs) */}
-          <div className="w-full md:w-auto flex flex-col md:flex-row items-center justify-center md:justify-start order-1 md:order-1 md:gap-8">
-            <img src="/logo.svg" alt="Sytch Coffee Roasters" className="h-[36px] md:h-[60px] w-auto" />
-            <div className="flex bg-black/20 rounded-full p-1.5 text-lg md:text-xl font-black tracking-wide mt-4 md:mt-0">
+          <div className="flex flex-row items-center justify-start gap-3 md:gap-8">
+            <img src="/logo.svg" alt="Sytch Coffee Roasters" className="h-[28px] md:h-[60px] w-auto shrink-0" />
+            <div className="flex bg-black/20 rounded-full p-1 md:p-1.5 text-sm md:text-xl font-black tracking-wide">
               <button
-                className={`relative px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Espresso' ? 'text-white' : 'text-white/80 hover:text-white'}`}
+                className={`relative px-3 md:px-8 py-1.5 md:py-2.5 rounded-full transition-colors ${activeTab === 'Espresso' ? 'text-white' : 'text-white/80 hover:text-white'}`}
                 onClick={(e) => handleTabClick('Espresso', e)}
               >
                 {activeTab === 'Espresso' && (
@@ -140,7 +140,7 @@ export default function Home() {
                 <span className="relative z-10">Espresso</span>
               </button>
               <button
-                className={`relative px-6 md:px-8 py-2 md:py-2.5 rounded-full transition-colors ${activeTab === 'Filter' ? 'text-white' : 'text-white/80 hover:text-white'}`}
+                className={`relative px-3 md:px-8 py-1.5 md:py-2.5 rounded-full transition-colors ${activeTab === 'Filter' ? 'text-white' : 'text-white/80 hover:text-white'}`}
                 onClick={(e) => handleTabClick('Filter', e)}
               >
                 {activeTab === 'Filter' && (
@@ -152,11 +152,11 @@ export default function Home() {
           </div>
 
           {/* Contact Info (Right) */}
-          <div className="w-full md:w-auto flex justify-center md:justify-end items-center space-x-6 md:space-x-8 tracking-wide order-2 md:order-2 mt-4 md:mt-0">
-            <a href="tel:+380675067392" className="text-white hover:text-white/80 transition-colors font-black text-lg md:text-[22px] whitespace-nowrap">
+          <div className="flex items-center gap-3 md:gap-8 tracking-wide shrink-0">
+            <a href="tel:+380675067392" className="hidden sm:block text-white hover:text-white/80 transition-colors font-black text-sm md:text-[22px] whitespace-nowrap">
               +38 (067) 506 73 92
             </a>
-            <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-6 md:px-8 py-2.5 md:py-3.5 rounded-full text-base md:text-xl font-black text-white hover:opacity-90 transition-opacity whitespace-nowrap ${getOppositeBgClass(baseTab)}`}>
+            <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-4 md:px-8 py-2 md:py-3.5 rounded-full text-sm md:text-xl font-black text-white hover:opacity-90 transition-opacity whitespace-nowrap ${getOppositeBgClass(baseTab)}`}>
               Замовити
             </a>
           </div>
@@ -170,7 +170,7 @@ export default function Home() {
       {/* Parallax Decorations */}
       <motion.div 
         style={{ y: ySlow }} 
-        className="absolute top-[320px] -left-10 md:-left-20 z-[-1] pointer-events-none will-change-transform"
+        className="hidden md:block absolute top-[320px] -left-10 md:-left-20 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -180,7 +180,7 @@ export default function Home() {
 
       <motion.div 
         style={{ y: yFast }} 
-        className="absolute top-[560px] -right-8 md:-right-24 z-[-1] pointer-events-none will-change-transform"
+        className="hidden md:block absolute top-[560px] -right-8 md:-right-24 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -190,7 +190,7 @@ export default function Home() {
 
       <motion.div 
         style={{ y: yMedium }} 
-        className="absolute top-[1000px] -left-16 md:-left-32 z-[-1] pointer-events-none will-change-transform"
+        className="hidden md:block absolute top-[1000px] -left-16 md:-left-32 z-[-1] pointer-events-none will-change-transform"
       >
         <div 
           className={`w-[141px] h-[157px] ${getOppositeBgClass(baseTab)} transition-colors duration-700`} 
@@ -212,23 +212,71 @@ export default function Home() {
       <main className="flex-1 w-full flex flex-col pt-6">
         
         {/* Title */}
-        <div className="flex flex-col items-start mb-12">
-          <h1 className="flex items-start min-h-[80px] md:min-h-[140px]">
+        <div className="flex flex-col items-start mb-8 md:mb-12">
+          <h1 className="flex items-start min-h-[52px] md:min-h-[140px]">
             <img 
               src="/espresso.svg" 
               alt="Espresso" 
-              className={`h-[71px] md:h-[119px] w-auto object-contain mt-[3px] md:mt-[5px] ${activeTab === 'Espresso' ? 'block' : 'hidden'}`} 
+              className={`h-[44px] md:h-[119px] w-auto object-contain mt-[2px] md:mt-[5px] ${activeTab === 'Espresso' ? 'block' : 'hidden'}`} 
             />
             <img 
               src="/filter.svg" 
               alt="Filter" 
-              className={`h-[58px] md:h-[97px] w-auto object-contain ${activeTab === 'Filter' ? 'block' : 'hidden'}`} 
+              className={`h-[36px] md:h-[97px] w-auto object-contain ${activeTab === 'Filter' ? 'block' : 'hidden'}`} 
             />
           </h1>
         </div>
 
-        {/* Table Container */}
-        <div className="w-full overflow-x-auto flex-1">
+        {/* Mobile: Card List */}
+        <div className="md:hidden flex flex-col gap-3 pb-8">
+          {isLoading && Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="animate-pulse rounded-[20px] bg-black/10 p-4">
+              <div className="h-6 bg-white/20 rounded w-1/4 mb-3" />
+              <div className="h-5 bg-white/20 rounded w-3/4 mb-2" />
+              <div className="h-4 bg-white/20 rounded w-1/2 mb-4" />
+              <div className="flex gap-6">
+                <div className="h-5 bg-white/20 rounded w-16" />
+                <div className="h-5 bg-white/20 rounded w-16" />
+              </div>
+            </div>
+          ))}
+          {error && <div className="py-8 text-center text-lg font-bold">Помилка завантаження даних</div>}
+          {!isLoading && !error && filteredData.map((item) => (
+            <div key={item.id} className="rounded-[20px] bg-black/10 px-4 py-4">
+              {/* Header row: number + name */}
+              <div className="flex items-baseline gap-3 mb-1">
+                <span className="text-[13px] font-black opacity-60 shrink-0">{item.number}</span>
+                <span className="text-[18px] font-black tracking-tight uppercase leading-tight">{item.name}</span>
+              </div>
+              {/* Region + tags */}
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-[13px] font-bold opacity-80 mb-3">
+                <span>{item.region}</span>
+                {item.flavorProfile && <span>· {item.flavorProfile}</span>}
+                {item.processing && <span>· {item.processing}</span>}
+              </div>
+              {/* Prices */}
+              <div className="flex gap-6">
+                <div>
+                  <div className="text-[11px] font-black uppercase opacity-60 mb-1">Роздріб</div>
+                  <div className="flex gap-3 items-baseline">
+                    <div className="text-[11px] font-black uppercase opacity-70">250г <span className="text-[15px] text-white opacity-100">{item.retailPrice.weight250g}</span></div>
+                    <div className="text-[11px] font-black uppercase opacity-70">1кг <span className="text-[15px] text-white opacity-100">{item.retailPrice.weight1kg}</span></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[11px] font-black uppercase opacity-60 mb-1">Опт від 2кг</div>
+                  <div className="flex gap-3 items-baseline">
+                    <div className="text-[11px] font-black uppercase opacity-70">250г <span className="text-[15px] text-white opacity-100">{item.wholesalePrice.weight250g}</span></div>
+                    <div className="text-[11px] font-black uppercase opacity-70">1кг <span className="text-[15px] text-white opacity-100">{item.wholesalePrice.weight1kg}</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: Table */}
+        <div className="hidden md:block w-full overflow-x-auto flex-1">
           <table className="w-full text-left border-separate border-spacing-0 min-w-[900px]">
             <thead>
               <tr className="text-[13px] font-black uppercase">
