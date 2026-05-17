@@ -124,11 +124,11 @@ export default function Home() {
           background: 'linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0) 100%)'
         }}
       >
-        <div className="w-full max-w-[1280px] px-6 md:px-12 lg:px-16 flex justify-end items-center space-x-6 md:space-x-8 tracking-wide pointer-events-auto">
-          <a href="tel:+380675067392" className="text-white hover:text-white/80 transition-colors font-black text-lg md:text-[22px] whitespace-nowrap">
+        <div className="w-full max-w-[1280px] px-4 md:px-12 lg:px-16 flex justify-end items-center gap-2 md:gap-8 tracking-wide pointer-events-auto">
+          <a href="tel:+380675067392" className="text-white hover:text-white/80 transition-colors font-black text-[13px] md:text-[22px] whitespace-nowrap">
             +38 (067) 506 73 92
           </a>
-          <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-6 md:px-8 py-2.5 md:py-3.5 rounded-full text-base md:text-xl font-black text-white hover:opacity-90 transition-opacity whitespace-nowrap ${getOppositeBgClass(baseTab)}`}>
+          <a href="https://t.me/denissytchev" target="_blank" rel="noopener noreferrer" className={`px-4 md:px-8 py-2 md:py-3.5 rounded-full text-[13px] md:text-xl font-black text-white hover:opacity-90 transition-opacity whitespace-nowrap ${getOppositeBgClass(baseTab)}`}>
             Замовити
           </a>
         </div>
@@ -261,9 +261,9 @@ export default function Home() {
           {!isLoading && !error && filteredData.map((item) => (
             <div key={item.id} className="rounded-[20px] bg-black/10 px-4 py-4">
               {/* Number + Name */}
-              <div className="flex items-baseline gap-2 mb-1">
+              <div className="flex items-start gap-2 mb-1">
                 <span className="text-[13px] font-black opacity-60 shrink-0 w-5">{item.number}</span>
-                <span className="text-[17px] font-black tracking-tight uppercase leading-tight">{item.name}</span>
+                <span className="text-[24px] font-black tracking-tight uppercase leading-tight">{item.name}</span>
               </div>
               {/* Region */}
               <div className="pl-7 text-[13px] font-bold mb-2">{item.region}</div>
@@ -276,27 +276,27 @@ export default function Home() {
                 <div className="pl-7 text-[13px] font-bold mb-4">{item.processing}</div>
               )}
               {/* Prices: two columns */}
-              <div className="flex gap-4">
+              <div className="flex gap-4 pl-7">
                 <div className="flex-1">
                   <div className="text-[10px] font-black uppercase opacity-70 tracking-wider mb-2">ЦІНА РОЗДРІБ</div>
                   <div className="flex items-baseline gap-2 mb-1.5">
                     <span className="text-[11px] font-black uppercase opacity-70 w-8 shrink-0">250г</span>
-                    <span className="text-[22px] font-black leading-none">{item.retailPrice.weight250g}</span>
+                    <span className="text-[20px] font-black leading-none">{item.retailPrice.weight250g}</span>
                   </div>
                   <div className="flex items-baseline gap-2">
                     <span className="text-[11px] font-black uppercase opacity-70 w-8 shrink-0">1кг</span>
-                    <span className="text-[22px] font-black leading-none">{item.retailPrice.weight1kg}</span>
+                    <span className="text-[20px] font-black leading-none">{item.retailPrice.weight1kg}</span>
                   </div>
                 </div>
                 <div className="flex-1">
                   <div className="text-[10px] font-black uppercase opacity-70 tracking-wider mb-2">ОПТ ВІД 2КГ</div>
                   <div className="flex items-baseline gap-2 mb-1.5">
                     <span className="text-[11px] font-black uppercase opacity-70 w-8 shrink-0">250г</span>
-                    <span className="text-[22px] font-black leading-none">{item.wholesalePrice.weight250g}</span>
+                    <span className="text-[20px] font-black leading-none">{item.wholesalePrice.weight250g}</span>
                   </div>
                   <div className="flex items-baseline gap-2">
                     <span className="text-[11px] font-black uppercase opacity-70 w-8 shrink-0">1кг</span>
-                    <span className="text-[22px] font-black leading-none">{item.wholesalePrice.weight1kg}</span>
+                    <span className="text-[20px] font-black leading-none">{item.wholesalePrice.weight1kg}</span>
                   </div>
                 </div>
               </div>
