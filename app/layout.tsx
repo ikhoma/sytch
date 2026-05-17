@@ -10,6 +10,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Sytch Coffee Roasters",
   description: "Live coffee price catalog for Sytch Coffee Roasters",
+  themeColor: '#FF5C39',
+  other: {
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
+  },
 };
 
 export default function RootLayout({
