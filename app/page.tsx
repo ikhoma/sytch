@@ -55,6 +55,7 @@ export default function Home() {
       document.head.appendChild(meta);
     }
     meta.setAttribute('content', color);
+    document.body.style.backgroundColor = color;
   }, [baseTab]);
 
   const handleTabClick = (tab: 'Espresso' | 'Filter', e: React.MouseEvent) => {
