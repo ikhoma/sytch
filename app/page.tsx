@@ -45,7 +45,7 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Sync Safari/Chrome browser chrome color with current tab
+  // Sync Safari browser chrome color (after ripple completes)
   useEffect(() => {
     const color = baseTab === 'Espresso' ? '#FF5C39' : '#5804E2';
     let meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
@@ -55,8 +55,13 @@ export default function Home() {
       document.head.appendChild(meta);
     }
     meta.setAttribute('content', color);
-    document.body.style.backgroundColor = color;
   }, [baseTab]);
+
+  // Sync body bg immediately on tab click (ripple covers the change)
+  useEffect(() => {
+    const color = activeTab === 'Espresso' ? '#FF5C39' : '#5804E2';
+    document.body.style.backgroundColor = color;
+  }, [activeTab]);
 
   const handleTabClick = (tab: 'Espresso' | 'Filter', e: React.MouseEvent) => {
     if (tab === activeTab) return;
