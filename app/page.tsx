@@ -236,7 +236,7 @@ export default function Home() {
       )}
 
       {/* Main Content Area */}
-      <main className="flex-1 w-full flex flex-col pt-0 md:pt-6">
+      <main className="flex-1 w-full flex flex-col pt-0 md:pt-6 pb-12">
 
         {/* Title */}
         <div className="flex flex-col items-start mb-6 md:mb-12 px-4 md:px-0">
